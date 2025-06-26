@@ -7,10 +7,18 @@ export default function App() {
   const [activeTab, setActiveTab] = useState("json");
 
   return (
-    <div className="p-4 font-sans max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4 text-center">Dev Toolbox</h1>
-      <TabSwitcher activeTab={activeTab} setActiveTab={setActiveTab} />
-      {activeTab === "json" ? <JsonFormatter /> : <Base64Tool />}
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 p-6">
+      <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-2xl p-8">
+        <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">
+          🧰 Dev Toolbox
+        </h1>
+
+        <TabSwitcher activeTab={activeTab} setActiveTab={setActiveTab} />
+
+        <div className="mt-6 transition-all duration-300 ease-in-out">
+          {activeTab === "json" ? <JsonFormatter /> : <Base64Tool />}
+        </div>
+      </div>
     </div>
   );
 }

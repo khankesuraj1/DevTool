@@ -13,7 +13,7 @@ export default function Base64Tool() {
       setError("");
     } catch (err) {
       setOutput("");
-      setError("Encoding failed");
+      setError("❌ Encoding failed");
     }
   };
 
@@ -24,29 +24,45 @@ export default function Base64Tool() {
       setError("");
     } catch (err) {
       setOutput("");
-      setError("Decoding failed");
+      setError("❌ Decoding failed");
     }
   };
 
   return (
     <div>
+      <h2 className="text-xl font-semibold mb-4 text-gray-700">🔐 Base64 Encoder / Decoder</h2>
+
       <textarea
-        className="w-full h-32 p-2 border rounded"
-        placeholder="Enter text or Base64 here"
+        className="w-full h-36 p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none transition-all"
+        placeholder="Enter plain text or Base64 encoded text..."
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <div className="flex gap-2 mt-2">
-        <button className="bg-green-600 text-white px-4 py-2 rounded" onClick={handleEncode}>
+
+      <div className="flex flex-wrap gap-3 mt-4">
+        <button
+          className="bg-green-600 hover:bg-green-700 transition text-white font-medium px-5 py-2 rounded-lg shadow-md"
+          onClick={handleEncode}
+        >
           Encode
         </button>
-        <button className="bg-yellow-500 text-white px-4 py-2 rounded" onClick={handleDecode}>
+        <button
+          className="bg-yellow-500 hover:bg-yellow-600 transition text-white font-medium px-5 py-2 rounded-lg shadow-md"
+          onClick={handleDecode}
+        >
           Decode
         </button>
       </div>
-      {error && <div className="text-red-500 mt-2">{error}</div>}
+
+      {error && <div className="text-red-500 mt-4 font-medium">{error}</div>}
+
       {output && (
-        <pre className="bg-gray-100 p-2 mt-4 overflow-auto max-h-64 border rounded">{output}</pre>
+        <div className="mt-6">
+          <h3 className="text-md font-semibold text-gray-600 mb-2">Output:</h3>
+          <pre className="bg-gray-100 text-sm p-4 rounded-lg border overflow-auto max-h-64 whitespace-pre-wrap">
+            {output}
+          </pre>
+        </div>
       )}
     </div>
   );
